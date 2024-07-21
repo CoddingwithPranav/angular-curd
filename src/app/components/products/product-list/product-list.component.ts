@@ -45,10 +45,6 @@ export class ProductListComponent {
   ) {}
 
   ngOnInit(): void {
-    this.productService
-      .getProducts()
-      .subscribe((products) => (this.products = products));
-
     this.searchService.searchTerms$
       .pipe(
         debounceTime(300),
@@ -58,13 +54,12 @@ export class ProductListComponent {
             .getProducts()
             .pipe(
               map((products) =>
-                products.filter((product) => product.name.includes(term))
+                products.filter((product) => product?.name.toLowerCase().includes(term.toLowerCase()) || product?.description.toLowerCase().includes(term.toLowerCase()))
               )
             )
         )
       )
       .subscribe((products) => (this.products = products));
-   console.log(this.products)
 
   }
 

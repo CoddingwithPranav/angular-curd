@@ -20,16 +20,15 @@ import { NgClass } from '@angular/common';
   providers: [MessageService]
 })
 export class ProductEditComponent {
-  productForm!: FormGroup;
-  messageService = inject(MessageService);
-  product!: Product;
-  id!: string;
-  constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private productService: ProductService
-  ) {}
+  public  productForm!: FormGroup;
+  private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private productService = inject(ProductService);
+  private messageService = inject(MessageService);
+  private product!: Product;
+  public id!: string;
+ 
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

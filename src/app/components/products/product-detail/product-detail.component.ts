@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ProductService } from '../../../shared/services/product.service';
 import { Product } from '../../../shared/models/product';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CurrencyFormatPipe } from '../../../shared/pipes/currency-format.pipe';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CurrencyFormatPipe],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })

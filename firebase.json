@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/angular-curd/browser/",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { catchError, Observable, of } from 'rxjs';
 import { environment } from '../../../environment/environment';
@@ -10,8 +10,7 @@ import { environment } from '../../../environment/environment';
 export class ProductService {
 
    apiUrl = environment.apiUrl;
-
-  constructor(private http: HttpClient) {}
+   http = inject(HttpClient);
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.apiUrl).pipe(
