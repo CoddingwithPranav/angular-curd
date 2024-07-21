@@ -5,15 +5,16 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Product } from '../../../shared/models/product';
 import { ProductService } from '../../../shared/services/product.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-product-edit',
   standalone: true,
-  imports: [ReactiveFormsModule, ToastModule],
+  imports: [ReactiveFormsModule, ToastModule, NgClass, RouterLink],
   templateUrl: './product-edit.component.html',
   styleUrl: './product-edit.component.scss',
   providers: [MessageService]
@@ -56,7 +57,8 @@ export class ProductEditComponent {
   }
   onSubmit(): void {
     if (this.productForm.invalid == true) {
-      this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'})
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please Complete Form' });
+  
       this.productForm.markAllAsTouched();
       return;
     }
@@ -66,13 +68,17 @@ export class ProductEditComponent {
         this.productService
           .updateProduct(updatedProduct, this.id)
           .subscribe(() => {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Successfully Updated' });
             this.router.navigate(['/products']);
-            this
           });
       } else {
         this.productService
           .addProduct(this.productForm.value)
-          .subscribe(() => this.router.navigate(['/products']));
+          .subscribe(() => {
+
+            this.messageService.add({ severity:'success', summary: 'Success', detail: 'Successfully Added' });
+            this.router.navigate(['/products'])
+          });
       }
     }
   }

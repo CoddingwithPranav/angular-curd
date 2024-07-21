@@ -1,1 +1,27 @@
-<p>product-detail works!</p>
+
+<div class="container w-[100vw] h-[100vh] p-5 ">
+  <div class="my-5 ">
+    <button type="button" class="text-black flex gap-5 items-center  font-medium  text-sm px-5 py-2.5 me-2 mb-2 " [routerLink]="'/products'">
+      <i class="pi pi-arrow-left"></i> 
+      <h2 class="font-bold text-xl">back</h2>
+    </button>
+
+    
+
+  </div>
+  <div class="mx-10">
+    <div class="row my-5">
+
+        <div>Name : {{product.name}}</div>
+    </div>
+    <div class="row my-5">
+
+        <p>Price : {{product.price}}</p>
+    </div>
+    <div class="row my-5">
+
+        <div>Description : {{product.description}}</div>
+    </div>
+    
+  </div>
+</div>

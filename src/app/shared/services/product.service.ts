@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { catchError, Observable, of } from 'rxjs';
+import { environment } from '../../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private apiUrl = 'https://669ba609276e45187d3615de.mockapi.io/products/products'; // Replace with your mock API
+   apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
